@@ -4,6 +4,7 @@ This is not a Tool, this is used when someone is writing a tool for web pentest(
 ##Usage:
 
 `python3 setup.py`
+
 `python3 tool.py -u https://example.com`
 
 This Tool will list basic info like: IP, Hostname, Status code etc, But mainly it will validate URL that user has entered
