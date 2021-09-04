@@ -1,7 +1,7 @@
 # Basic-Python-Web-Script
 This is not a Tool, this is used when someone is writing a tool for web pentest(or any other thing) this script will help him get started and u can add things according to your tool
 
-##Usage:
+## Usage:
 
 `python3 setup.py`
 
@@ -11,7 +11,7 @@ This Tool will list basic info like: IP, Hostname, Status code etc, But mainly i
 
 Feel free to use in your personel projects...
 
-##Cross Platform Support:
+## Cross Platform Support:
 
 Unfortunately you can run this script on any OS but setup.py works with linux only, either way its useful because you can write your own setup.py or download manually etc 
 
