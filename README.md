@@ -7,7 +7,8 @@ This is not a Tool, this is used when someone is writing a tool for web pentest(
 
 `python3 tool.py -u https://example.com`
 
-This Tool will list basic info like: IP, Hostname, Status code etc, But mainly it will validate URL that user has entered
+First this script will Validate url which you provided
+It will also find hostname, IP/IPV6, Status & Protocols
 
 Feel free to use in your personel projects...
 
