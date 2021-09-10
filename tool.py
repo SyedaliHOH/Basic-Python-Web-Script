@@ -13,12 +13,15 @@ wrong_sc = 401, 402, 403, 404, 405, 406, 500, 501, 502, 503, 504, 505
 exit = colored('[-]Exiting...', 'red', attrs=['bold'])
 pos = colored("[+] ","green", attrs=['bold'])
 neg = colored("[-] ","red", attrs=['bold'])
+loading = colored("*","yellow", attrs=['bold'])
+l1 = colored("[", attrs=['bold'])
+l2 = colored("]", attrs=['bold'])
+
 
 info = colored('[INFO]','white')
 warn = colored('[WARNING] ', 'yellow')
 error = colored('[ERROR] ', 'red')
 success = colored('[SUCCESS] ', 'green')
-
 
 #Taking Main input and args
 
@@ -30,6 +33,8 @@ args = parser.parse_args()
 target = args.url
 
 #Validating URL:
+
+print(f"{l1+loading+l2} Validating URL")
 
 try:
     response = requests.get(target, timeout=10)
@@ -52,7 +57,6 @@ except MissingSchema:
 except requests.exceptions.RequestException as e:
     print("Connection Error:")
     raise SystemExit(e)
-    print(exit)
 
 except KeyboardInterrupt:
     print(colored("\n[-]User Interrepted","red", attrs=['bold']))
@@ -66,7 +70,6 @@ except:
 #Basic Result:
 
 targ = re.sub(r'https://www\.|http://www\.|https://www|http://|https://|www\.', "", target).strip('/')
-print(targ)
 
 host = socket.gethostbyname(targ)
 scanner = nmap.PortScanner()
@@ -79,17 +82,21 @@ def basic_info(host):
 
     scanner.scan(targ, '1')
 
-    IPV6 = socket.getaddrinfo(targ, port, socket.AF_INET6)
+    try:
+        ipv6 = socket.getaddrinfo(targ, port, socket.AF_INET6)
+        ip = ipv6[0][4][0]
+    except:
+        ip = "NONE"
+
     protocols = ', '.join(map(str, scanner[host].all_protocols()))
 
     print("\nStatus:\t\t "+ colored(scanner[host].state().upper(), "green"))
-    print("Hostname:\t", scanner[host].hostname())
+    print("Hostname:\t", socket.gethostbyaddr(targ)[0])
     print("IP:\t\t", host)
-    print("IPV6:\t\t", IPV6[0][4][0])
+    print("IPV6:\t\t", ip)
     print("Protocols:\t", protocols)
     print("Status Code:\t", colored(response.status_code, "green"))
 
 print(f"{pos}Retriving Basic Info")
-
 basic_info(host)
 
